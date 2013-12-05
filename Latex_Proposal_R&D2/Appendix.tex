@@ -1,0 +1,102 @@
+\section{Appendix}
+
+\subsection{The conditions and Prerequisite} \label{prerequisite}
+
+\paragraph{A.	Name of use cases:}
+\begin{enumerate}
+	\item IR Laser-based optical tracking system setup
+	\item Combine projects and algorithms  (Microsoft Visual Studio projects )
+	\item Run algorithms using real world data
+	\item Laser-pointer based device and IMU setup as an end effectors of a manipulator
+\end{enumerate}
+\paragraph{B.	Short description:}
+\begin{enumerate}
+	\item 	 
+		\begin{itemize}
+		\item IR laser pointer projects a special grid of white points on the projection surface from inside of Immersive square
+		\item The projected grid is captured in real time using a camera which monitors the projection plane from behind
+		\end{itemize}
+	\item Algorithms are written independently by different programmers in different projects. 
+		\begin{itemize}
+		\item Those projects are combined and run in the same project.  
+		\item	The combined project must yield the pose information of the device
+		\end{itemize}
+	\item Laser-based optical tracking system algorithm is running using the artificially created images. A sequence of camera captured image is the input.  
+\item Physically attaching laser-based device and IMU into a fixed plane box, so that this box can be attached to manipulator.
+\end{enumerate}
+ 
+\paragraph{C.	Who is the user?}
+\begin{enumerate}
+	\item This setup is required for the person who wants to develop an evaluation strategy based on a ground truth robotic arm 
+\end{enumerate}
+\paragraph{D.	What are the inputs (pre-conditions)?}
+\begin{enumerate}
+	\item Listed tools should be available :IR laser-based pointer, IR camera, and robot manipulator
+	\item	Laser-based optical tracking system algorithm should be running properly
+	\item	Robot manipulator should be 
+		\begin{itemize}
+			\item as precise as possible to act a ground truth system 
+  		\item carrying the payload easily without performance loss
+		\end{itemize}
+\end{enumerate}
+\paragraph{E.	Alternative course of events?}
+\begin{enumerate}
+	\item In case IR laser-based pointer is not available, alternative way is
+ 			\begin{enumerate}
+			\item To use less weight pocket projector to create the  grid of points on the projection surface
+  		\item The room should be dark (curtains are closed, light is turned off)
+  		\item The projector should have strong projection
+			\end{enumerate}
+	\item In case the Katana manipulator does not work, alternative manipulators  are
+	\begin{enumerate}
+		\item Kuka youbot 		
+			\begin{itemize}
+			\item only 1 arm is available, 
+			\item	Disadvantages: small, and 5DoF. Thus, not appropriate for evaluation purpose
+			\end{itemize}
+		\item Kuka arm which is in use for Jenny robot
+	\begin{itemize}
+		\item available 6 weeks later, 
+		\item	requesting it for a particular period
+	\end{itemize}
+	\end{enumerate}
+\end{enumerate}
+
+\paragraph{F.	What is the output of the system?}
+
+\begin{enumerate}
+	\item The user uses this setup to get the possible pose information of the end effectors from 
+	\begin{enumerate}
+		\item Laser based optical tracking system
+		\item Inertial measurement unit 
+		\item System integration 
+		\item Robot manipulator system
+	\end{enumerate}
+\end{enumerate}
+
+\paragraph{G.	What are the past conditions?}
+\begin{enumerate}
+	\item Difficulties to implement IR laser-based pointer device
+	\item One pocket projector and Genie camera combination is tested
+	\begin{itemize}
+		\item The projector light is too weak
+		\item Genie camera lens is not appropriate to pass the projector light
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Optional milestones} \label{milestones}
+
+\paragraph{Demo application:}
+
+
+A 3D environment modeling is being considered in CAVE-type Virtual Reality Environment to demonstrate the input device. Our application uses this model and requires to have an intuitive user interface. The input device provides pose information to that application with respect to the projected screen. Intuitive user interface needs to be investigated. Thus, it allows users to move and rotate an object into a position and an orientation.   
+
+\paragraph{Developing an approach of controlling 3D (6DoF) mouse :}
+
+The current code implementation works only within a graphical simulator developed by \cite{thomas}. It is not identified by any other applications such as Google earth map, Autocad, Autodesk Inventor, 3Ds Max, Maya Dassault CATIA, Siemens NX, SolidEdge, Solidworks, Actify Spinfire, Ascon Kompass 3D, CoCreate, Delcam Feauture CAM, Dlubal RSTAB, gns Animator, Ironcad Inovate, Mastercam, MegaCAD, Surfcam, TurboCAD. This support comes with VRPN plug-in. We write the input device driver for VRPN to push captured pose information up to six degrees of freedom.  
+
+
+
+
+
+

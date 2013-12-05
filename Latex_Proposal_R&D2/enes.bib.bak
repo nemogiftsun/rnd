@@ -1,0 +1,32 @@
+% This file was created with JabRef 2.6.
+% Encoding: Cp1254
+
+@ARTICLE{LB07,
+  author = {Marc Erich Latoschik and Elmar Bomberg},
+  title = {Augmenting a Laser Pointer with a Diffraction Grating for Monoscopic
+	6DOF Detection},
+  journal = {Journal of Virtual Reality and Broadcasting},
+  year = {2007},
+  volume = {4},
+  number = {14},
+  month = jan,
+  note = {{\tt urn:nbn:de:0009-6-12754,}, ISSN 1860-2037},
+  abstract = {This article illustrates the detection of 6 degrees of freedom (DOF)
+	for Virtual Environment interactions using a modified simple laser
+	pointer device and a camera. The laser pointer is combined with a
+	diffraction grating to project a unique laser grid onto the projection
+	planes used in projection-based immersive VR setups. The distortion
+	of the projected grid is used to calculate the translational and
+	rotational degrees of freedom required for human-computer interaction
+	purposes.},
+  editor = {Jens Herder}
+}
+
+@comment{jabref-meta: selector_publisher:}
+
+@comment{jabref-meta: selector_author:}
+
+@comment{jabref-meta: selector_journal:}
+
+@comment{jabref-meta: selector_keywords:}
+

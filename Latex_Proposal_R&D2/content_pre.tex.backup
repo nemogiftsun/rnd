@@ -1,0 +1,124 @@
+
+\section{Introduction}
+ \paragraph{}
+ Manipulation with a mobile base has attracted a lot of research in the last decade because of various opportunities for applications in service and industrial robotics. These 
+ systems combine both the kinematics of the arm and base providing redundant degrees of freedom to increase the workspace of the manipulator. Open loop control strategies to execute manipulation tasks are limited in their applications as they suffer from imprecision and lack of robustness due to noise in sensors and actuators. The perceived information keeps changing with the environment bringing the necessity to have a control that tightly couples the perception information and the manipulation actions of the robot. This allows the robot perform precise and reliable manipulation of objects. Moreover, mobile manipulators in general are supposed to exploit the kinematics and dynamics of both the arm and base for executing complex tasks. But arm and base navigation components are most often seen as separate entities when it comes to robot control which makes it difficult to coordinate for an advanced task like manipulating an object on a moving platform complying to both the kinematic and goal constraints. 
+ 
+ This work is focused on achieving a robust and dynamic whole body control in Mobile Manipulators which is generic enough to plug in sensory feedback directly and execute planned motions using an environment model constructed using the perception components. This task will concentrate on developing 'Stack of Tasks' controller, a heirarchical task
+ based velocity controller for KUKA youBot to perform reliable manipulation in an industrial setup.
+ \section{Motivation}
+ \paragraph{}
+ Industrial scenarios in general might require a mobile robot to handle from simple to complex manipulation tasks. A simple task can be to pick and place static industrial objects in a pre-defined workspace which has some challenges like detecting these objects, identify feasible grasping points, plan and control arm actions and avoid obstacles during execution. This task can be executed by placing the base optimally with respect to the object and use an arm controller to manipulate. The control demand for successful execution is not so complex provided the perception components are precise enough. But the object pose information from the perception pipeline may suffer from errors due to calibration, sensor noise, and photometric effects. A visual servo control can be used in such cases to make the control loop closed to achieve successful execution. A standard technique uses classical task function based control which minimizes the error between the goal and current configuration. This control can be either image based or position based which works differently at different situations demanding experimental analysis to choose the right one for the scenario. It is quite overwhelming that it demands a lot of effort in developing a reliable control for some tasks in an Industrial scenario. 
+ 
+  \paragraph{}
+  A complex task can be manipulating a moving object on a conveyor belt or exchanging objects between multiple robots. These tasks are much more challenging as it requires a precise object tracking system and a closed loop control that can synchronize arm and base actions. In some situations, it might even require multiple robots to perform a cooperative manipulation task which makes the scenario much more complex. The scenarios point out that each task has its own complexity in terms of the demand it requires from the perception components and the robot controller. This makes it complex to develop reliable applications for mobile manipulators in an industrial setup. This motivates a necessity for a generic task based controller which is flexible enough to be used in developing real time mobile robot applications. 
+
+ \section{Problem Formulation}
+ \paragraph{}
+  Mobile Manipulators are usually redundant systems due to the kinematics of both the base and arm. Control of such redundant robots is difficult as it is not always easy to compute analytical inverse kinematic and dynamic solutions. The control techniques to solve redundancy mostly use task function based approach which depends inverse kinematic mapping of the robot. Generalized Inverse Kinematics(GIK) by Nakura et al. uses a damped least square inverse of the jacobian is quite popular among the community working on redundant robots. Redundant manipulators provides a lot of functional advantages in term of collision avoidance, singularity avoidance and obstacle avoidance, etc. A framework to 
+  plug in various constraints on the generated solutions 
+  Siciliano extended Nakura's approach using that uses an iterative scheme to handle multiple tasks for highly redundant robots. 
+  
+  
+  . Stack of Tasks, a heirarchical
+  task function based controller is 
+  
+  
+  
+  * to handle redundant kinematics
+  * tasks can be different 
+    - it can be joint specific
+    - it can be just constraints
+    - it can have different priorities
+    - they can be equality / in equality constraints
+  * state of the art  
+  * stack of tasks
+  * integration issues
+  
+For any successful manipulation task, the ability of the robot to handle object pose uncertainties is very important. The object pose information from the perception pipeline
+may suffer from errors due to calibration, sensor noise, and photometric effects. The accuracy required to perform successful manipulation also depends upon
+the object geometry and the gripper that a manipulator uses. A gripper with a limited physcial ability to grasp objects requires optimal base placement with respect to the object which becomes crucial to carry out a successful manipulation. This makes open loop control less reliable for precise manipulation tasks. 
+ \paragraph{}
+ A closed loop controller with instantaneous visual data is a good alternative to perform manipulation with good positioning accuracy. Visual servoing is a most common term for such controllers which does not require object pose and robot mechanical accuracy to manipulate. This control basically maps the errors in the image features to joint velocities of the robot. So features play an important role in designing this controller. Though the gripper is constrained by certain mechanical factors, it can actually grasp most of the objects if the exact grasping points on the object is known. This desired tool-tip pose actually are controlled by the features defined. So it becomes challenging to define features which is generic enough for all the set of the objects that can be manipulated by the robot gripper. 
+ 
+ The objects are not always in reach of the arm which necessitates the motion of the base to enhance the workspace region. There is a necessity to visually control both the arm and base simultaneously to manipulate effectively. The arm and base of a mobile manipulator may add up to more than six degrees of freedom which makes it challenging to model jacobian matrix that maps error feature space to velocities in joint space. Also in any other control strategy, obstacle constraints for the base and the arm should be encoded in the control to make it collision free. Additionally, the camera should be occlusion free and the controller is supposed to move the robot in such a way it does not lose the object from the visual field. It is challenging to develop a model that encodes these constraints to perform a robust manipulation. 
+ 
+ The above problems are relevant to static objects. In case of dynamic objects, it becomes challenging to track dynamic object features for effective control of the robot. 
+
+\section{State of the Art}
+\textit{Visual Servo Control} is a technique which uses vision data from the camera to control the motion of a robot. This technique allows to directly couple visual information and the robot motion in the control loop which makes it an attractive option to perform robust manipulation. The vision data can be acquired from camera irrespective of where it is mounted, as long it is able to send information about the target to the servo control loop. The controller calculates velocity to reduce the error defined below \cite{Hutchinson2006}
+\[\textit{e(t) = s(m(t),a) - s\textsuperscript{*}}\]
+Where:
+\begin{itemize}[label=]
+    \item \textit{s(m(t),a)}: refers to the observed value of the features
+    \item \textit{m(t)}:      refers to the instantaneous image measurements
+    \item \textit{a}:         refers to the parameters that correspond to the knowledge of the system
+    \item  \textit{s\textsuperscript{*}}:       refers to the desired value of the features
+\end{itemize}
+The standard approach is to develop a cartesian velocity controller for the robot which can control the motion of the camera mounted on the robot arm, based on the chosen features\cite{Hutchinson2006}. The velocity of the features or the errors with reference to robot frame can be represented by the below form
+\[\dot{e} = L_{e}\mathbf{v}_{c}\] 
+Where:
+\begin{itemize}[label=]
+    \item \textit{ $L_{e}$ }: refers to a feature Jacobian matrix that maps cartesian velocity of the camera to velocity of the features. The Jacobian matrix $L_{e} = L_{s}$ as the errors we calculate are with respect to the pre-defined features.
+    \item \textit{ $\mathbf{v}_{c}$ }: refers to camera velocity = $({v}_{c},{\omega}_{c})$ 
+\end{itemize}
+ Considering the velocity of the camera to be the input to the controller, it is of the form
+\[\mathbf{v}_{c}= -\lambda\widehat{L_{e}}e\]
+Where:
+\begin{itemize}[label=]
+    \item \textit{ $\lambda$ }: is the parameter which controls the exponential decrease of the velocity.
+    \item \textit{ $\widehat{L_{e}}$ }: is the approximation of the pseudoinverse of the feature Jacobian matrix(interaction matrix).
+    \item \textit{ $e$ }: is the error between the observed and desired value of the features.
+\end{itemize}
+This is a standard principle used in most of the visual controllers\cite{Hutchinson2006}. The forthcoming section will give a rough overview about certain important aspects in developing a visual controller for a robot which forms the basis of this proposal for such a system in KUKA youBot at RoboCup@Work Scenario.
+
+\subsection{Visual Control Approaches}
+There exists two approaches, classified by Sam and Weiss\cite{Jablokow1997}, which form the basis for exiting visual techniques till now. They are
+\begin{itemize}
+    \item \textbf{Image-Based Visual Servo(IBVS)}: This scheme depends on features of the target in image space to control the motion of the robot. The pixel measurements are usually tranformed to features which are then mapped to joint velocities of the robot to reach the desired goal state. There are various options for constructing jacobian matrix that maps features to joint velocities in the robot. The most efficient approach uses both the inverse of instantaneous feature jacobian and the feature jacobian  corresponding to the target in the goal state. Image based approach is very robust to calibration errors and image noise. Proper estimation of features are necessary to generate smooth trajectories and lack of such estimation will lead to sub-optimal Cartesian trajectories. Also, when the displacement is large, the control might 
+    end up achieving a local minima or reach singularities\cite{Hutchinson2006}.
+    
+    \item \textbf{Position-Based Visual Servo(PBVS)}:  This scheme depend on features with respect to a reference frame common to both camera and the target. This means that three dimensional poses of the features which define the target actually control the motion of the robot. This problem zeroes down to accurate estimation of 3-d pose of features and mapping them to joint space. This approach produces rotational velocity which follows a geodesic path with consistent exponential decrease in speed of both translation and orientation parameters. This approach is global asymptotically stable and generates smooth cartesian trajectories. Pose errors can significantly impact the accuracy of the system.
+
+\end{itemize}
+    
+    Both these approaches have significant potential advantages and disadvantages\cite{Hutchinson2006} which led to the development of several other advanced approaches below
+\paragraph{Offline Optimization Techniques}
+\begin{itemize}
+
+    \item \textbf{Hybrid Visual Servo}: This method combines the efficient control law in PBVS for controlling the rotation and define features in image coordinates just like in 
+    IBVS to control the translational velocity of the robot. There exists a special error term which also compensates the error introduced due to rotational velocites using PBVS which
+    makes the approach global asymptotically stable and robust to pose errors. One such system called 2-1/2-D Visual Servoing\cite{Malis1999} uses coordinates of image point  
+    and logarithm of depth of these points to define features to reduce the translational error and uses PBVS control law to compensate for rotational error. There are various
+    options to define features in image space depending upon the application. In this system\cite{Morel2d}, in addition to the target features, some points are chosen so that all the
+    target points remain in the camera frame. Some systems add feature points to make the interaction matrix triangular for comfort in inversion computations\cite{Morel2d} and make it free from local minima\cite{Morel04extended}. 
+    
+    \item \textbf{Partitioned Visual Servo}: This approach depends on defining the features for the target in such a way, each of these features has influence on the motion in a particular axis independently. The main goal is to identify a diagonal matrix leading to direct, linear mapping between feature space and the joint velocity. One such 
+    approach\cite{Corke2001} decouples motion pertaining to optical axis which makes it equally stable and robust to pose errors just like in hybrid approaches. 
+    
+    \item \textbf{Geometrical Approaches}
+    It is also possible to remove the necessity of the partitioning the feature components, by using geometrical features like circle, square, rectangle, etc. A contour based
+    approach\cite{Collewet2000} uses polar description of the points to estimate the interaction matrix analytically. A more robust approach\cite{Chaumette2004} uses image moments
+    of the planar objects to represent the features which eliminates the addition of redundant points to avoid local minima and linearization issues\cite{Tahri2005}.
+    
+\end{itemize}
+\paragraph{Online Optimization Techniques}
+\begin{itemize}
+    \item \textbf{Optimal Control Schemes}: Linear quadratic Gaussian (LQG) control schemes are used to handle visual servoing by estimating velocities by minimizing the combination
+    of state and control inputs\cite{hashimoto1993lq}. Linear quadratic Gaussian control is a combination of Kalman filtering and linear quadratic regulation which optimizes the balance between tracking errors and motion. A LQG control exists with joint limits and occlusion constraints taken into account. \cite{Nelson1995a}. It is also possible to reformulate the control criteria based on robot motion which is manifested in the interaction matrix just like it is done in these approaches\cite{Sharma1997,Nelson1995}. A
+    gradient projection method is used in addition to make it robust to local minima problems\cite{Castano1994,Espiau1992}.
+    
+    \item \textbf{Switching Schemes}: These schemes uses a controller that switches between IBVS and PBVS based on Lyapunov Stability function criteria. One such approach \cite{Gans2003} has two threshold points for IBVS and PBVS. The control switches to either of the control when the Lyapunov function is above the respective threshold points.
+    
+    \item \textbf{Feature Motion Planning}: 
+    Coupling path planning techniques driven by features and other robot dependent constraints with trajectory following makes the approach more reliable. The constraints may 
+    be obstacle avoidance, joint limits, occlusion avoidance and camera visibility. Though if the modeling errors can affect the approach, an adaptable control can be used to
+    make it reliable\cite{Chaumette2007}.
+  
+\end{itemize}
+
+
+
+
+ 
+      
