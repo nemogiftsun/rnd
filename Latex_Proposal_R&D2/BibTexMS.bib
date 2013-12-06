@@ -1,31 +1,4 @@
 @article{Jablokow1997,
-annote = {* 1980 Sanderson andWeiss [223] introduced an important classification of visual
-servo structures schematically - image based and psoition based
-        
-the pioneering work of the early 1970s to the present day
-* Shirai and Inoue  1973  
-   -pose based approach- depth fixed. x and y estimated
-   - task - grasp a square prism and put it in a box 
-   -visual feedback - edge extraction and line fitting
-      to determine the pose of the box
-      fixed camera servo cycle - 10 s
-* Hill and Park 1979
-  Makhlin
-    unanimate robot
-    pose based approach but 2d features
-* Prajoux [207]
-Hand Held Light stripers
-* Agin 
-* Venkatesan and ArchiBald
-        
-        
-        
-        
-        
-        
-        
-        
-      },
 author = {Jablokow, K.},
 doi = {10.1016/S0967-0661(97)84372-9},
 file = {:media/Data/vs/book.pdf:pdf},
@@ -250,3 +223,137 @@ url = {http://www.youbot-store.com/youbot-developers/software/ros/youbot-inverse
   year={1997},
   organization={IEEE}
 }
+@article{Mansard2009,
+author = {Mansard, N. and Khatib, O. and Kheddar, a.},
+doi = {10.1109/TRO.2009.2020345},
+file = {:home/ngiftsun/Documents/laas/constraintoptimization/04926146 (1).pdf:pdf},
+issn = {1552-3098},
+journal = {IEEE Transactions on Robotics},
+mendeley-groups = {laas},
+month = jun,
+number = {3},
+pages = {670--685},
+title = {{A Unified Approach to Integrate Unilateral Constraints in the Stack of Tasks}},
+url = {http://ieeexplore.ieee.org/lpdocs/epic03/wrapper.htm?arnumber=4926146},
+volume = {25},
+year = {2009}
+}
+@inproceedings{siciliano1991general,
+  title={A general framework for managing multiple tasks in highly redundant robotic systems},
+  author={Siciliano, Bruno and Slotine, J-JE},
+  booktitle={Advanced Robotics, 1991.'Robots in Unstructured Environments', 91 ICAR., Fifth International Conference on},
+  pages={1211--1216},
+  year={1991},
+  organization={IEEE}
+}
+@inproceedings{hanafusa1981analysis,
+  title={Analysis and control of articulated robot with redundancy},
+  author={Hanafusa, Hideo and Yoshikawa, Tsuneo and Nakamura, Yoshihiko},
+  booktitle={IFAC, 8th Triennal World Congress},
+  volume={4},
+  pages={1927--1932},
+  year={1981}
+}
+@article{khatib1986real,
+  title={Real-time obstacle avoidance for manipulators and mobile robots},
+  author={Khatib, Oussama},
+  journal={The international journal of robotics research},
+  volume={5},
+  number={1},
+  pages={90--98},
+  year={1986},
+  publisher={Sage Publications}
+}
+@article{chan1995weighted,
+  title={A weighted least-norm solution based scheme for avoiding joint limits for redundant joint manipulators},
+  author={Chan, Tan Fung and Dubey, Rajiv V},
+  journal={Robotics and Automation, IEEE Transactions on},
+  volume={11},
+  number={2},
+  pages={286--292},
+  year={1995},
+  publisher={IEEE}
+}
+@inproceedings{raunhardt2007progressive,
+  title={Progressive clamping},
+  author={Raunhardt, Daniel and Boulic, Ronan},
+  booktitle={Robotics and Automation, 2007 IEEE International Conference on},
+  pages={4414--4419},
+  year={2007},
+  organization={IEEE}
+}
+@article{mansard2009directional,
+  title={Directional redundancy for robot control},
+  author={Mansard, Nicolas and Chaumette, Fran{\c{c}}ois},
+  journal={Automatic Control, IEEE Transactions on},
+  volume={54},
+  number={6},
+  pages={1179--1192},
+  year={2009},
+  publisher={IEEE}
+}
+@article{lee2012intermediate,
+  title={Intermediate Desired Value Approach for Task Transition of Robots in Kinematic Control},
+  author={Lee, Jaemin and Mansard, Nicolas and Park, Jaeheung},
+  year={2012},
+  publisher={IEEE}
+}
+
+@article{kanoun2011kinematic,
+  title={Kinematic control of redundant manipulators: Generalizing the task-priority framework to inequality task},
+  author={Kanoun, Oussama and Lamiraux, Florent and Wieber, P-B},
+  journal={Robotics, IEEE Transactions on},
+  volume={27},
+  number={4},
+  pages={785--792},
+  year={2011},
+  publisher={IEEE}
+}
+
+@article{de2010feature,
+  title={Feature-based locomotion controllers},
+  author={de Lasa, Martin and Mordatch, Igor and Hertzmann, Aaron},
+  journal={ACM Transactions on Graphics (TOG)},
+  volume={29},
+  number={4},
+  pages={131},
+  year={2010},
+  publisher={ACM}
+}
+
+@inproceedings{escande2010fast,
+  title={Fast resolution of hierarchized inverse kinematics with inequality constraints},
+  author={Escande, Adrien and Mansard, Nicolas and Wieber, P-B},
+  booktitle={Robotics and Automation (ICRA), 2010 IEEE International Conference on},
+  pages={3733--3738},
+  year={2010},
+  organization={IEEE}
+}
+
+@article{Escande2013,
+annote = {* Temporarily relax the inequality constraint on the distant dof
+* Clamping  - increased number of iterations and costly
+                       - difficult to relax some dof clamped
+* Homotopy of control law with and without inequality constraints
+  - but cost is  prohibitive when complex case. Reduction of  this cost was proposed but involves very specific study for each new type of task.
+* Inequalities can be encoded in Least square program
+  - no possibility of enforcing priorities among them
+  - most obvious approach to solve such hierarchical optimization problems is to solve single-objective optimization problems successively, in cascade
+ - dedicated simplex solver
+ - 
+        
+        
+Task Function Approach
+        
+        
+        
+Questions:
+What is a direct function?
+      },
+author = {Escande, Adrien and Aist, Jrl-cnrs},
+file = {:home/ngiftsun/Documents/laas/constraintoptimization/2013\_escande\_ijrr.pdf:pdf},
+mendeley-groups = {laas},
+title = {{Hierarchical Quadratic Programming : Fast Online Humanoid-Robot Motion Generation}},
+year = {2013}
+}
+

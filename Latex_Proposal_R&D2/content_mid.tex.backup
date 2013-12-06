@@ -10,8 +10,6 @@
 
 \section{Task}
 
-The state of the art task function based solvers are quite common in humanoid robots domain and very seldom used in redundant mobile manipulators. This work is meant to bridge
-the educational gap that the mobile manipulators has been lacking until now
 % \section{Task}
 %  This R\&D will focus on designing and developing a visual servoing controller that can manipulate static and dynamic objects. This task is decomposed into simple and achievable
 % tasks below
