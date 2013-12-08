@@ -16,16 +16,25 @@
 \item 'SOT' controller for youbot architecture
 \end{itemize}
 \item December 30, 2013 - Extend the controller to plug in the developed collision constraints
-\item January  12, 2013 
+\item January  12 , 2013 
 \begin{itemize}
 \item Test, Evaluate, and fix issues in the 'SOT' Arm controller
-\item Second Draft of the Report with test results and previous draft revisions
+\item Second Draft of the Report with test results and previous draft revisions.
 \end{itemize}
-\item January  12-23, 2013 - Buffer time for software fix and update. Effort will be taken to make the 'SOT' control work for both the arm
-and base with base collision constraints from laser data.
 
-\item January  24, 2014 - Project Submission
 
-\item January  24-31, 2014 - Rnd Defense
-
+% \begin{itemize}
+% \item Test, Evaluate and Fixing issues in the controller
+% \item Report on the developed visual controller
+% \end{itemize}
+% \item October 15th, 2013 - 
+% \begin{itemize}
+% \item Develop a primitive model that maps all the joints in the vision control
+% \item Research and Analysis on how to encode various constraints with vision controller
+% \end{itemize}
+% \item October 31st,2013 - A fully developed vision controller that maps all the joints in youBot
+% \item November 20th,2013 - Design an architecture that encodes obstacle and other proposed constraints
+% \item December 1,2013    - Develop Control that encodes the proposed constraints
+% \item December 15,2013   
+% \item Jan 2,2014 - Submission of the project report
 \end{itemize}
